@@ -165,6 +165,8 @@ The only writes the agent makes:
 
 For fully autonomous runs, scope `Write` to `{outputDir}/*` and `.ux-audit.json` only.
 
+An Almanac run ("Run Almanac UX audit N") writes none of these to disk. It posts findings, decisions, the summary, actions, and checked prompts to Almanac with the `ux_audit.*` MCP tools, and the report to RolePress. Its only file is the report, built in a temporary directory and deleted after the push.
+
 ---
 
 ## Autonomous vs. Interactive
