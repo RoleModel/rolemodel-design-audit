@@ -43,7 +43,7 @@ Output to **reveal.js** (component-based slide deck), **Figma** (direct canvas w
 
 ## Almanac
 
-Almanac is the record of every audit: which partner and project it is for, who the client contact is, where it stands with them, and which findings made the cut. The report files are the deliverable; Almanac is how the team finds and follows up on them.
+Almanac is the record of every audit. Each one is a pipeline project labelled UX Audit and synced with Linear, which holds the partner, the client contact, and where it stands. The audit itself holds the walkthrough and which findings made the cut. The report files are the deliverable; Almanac is how the team finds and follows up on them.
 
 **An Almanac run saves its results to Almanac, not to disk.** When the run starts from "Run Almanac UX audit N", every result goes to audit N through the Almanac tools as soon as you have it, and the steps below that write files change:
 
@@ -79,7 +79,7 @@ Never write audit output into the repository you scan or anywhere else on the pe
 - **Add a section when the ten don't fit**, such as a product's own workflow or a client's specific question, with `ux_audit.custom_section.create`: `title`, `intro`, and `prompts` (the questions). File findings under it by giving them its exact title as their `area`.
 - **Check walkthrough prompts as you cover them** (by the prompt ids the brief lists under `sections`) with `ux_audit.update` and `checked_prompts`, so the team can see what the walkthrough covered.
 - **Publish reports to RolePress, not GitHub Pages.** Push the report HTML with `content_upload_request` and then `deliverable_push`, into the folder whose slug is the partner's name in lowercase with dashes (`PropertyIntel` → `propertyintel`). Build every image, font, and stylesheet into the HTML first (data URIs or inline `<style>`): RolePress serves the one file, so a link to a file beside it shows as broken. Link it with `ux_audit.update` and `report_id`. RolePress keeps versions and sits behind Almanac sign-in. A client still needs a PDF or a shared copy until RolePress has share links.
-- **Do not change an audit's status.** Proposing it, the client's answer, and delivery are steps a person takes in Almanac, because each one is kept in the audit's history in Almanac.
+- **Do not change an audit's status.** Each audit is a pipeline project labelled UX Audit, managed in Linear. Proposing it, the client's answer, and delivery are steps a person takes on that project. `ux_audit.show` gives the project and its status.
 - **Import an older audit** from the `rolemodel-ux-audit-projects` repo with `ux_audit_import`: find the partner with `partner_search`, then push `<slug>/audit/AUDIT-REPORT.html` to RolePress as above, then send its id as `report_id`, `<slug>/audit/catalog.json` as `catalog` and `<slug>/audit/reviewed-findings.json` as `findings` when there is one. Confirm the partner with the person before each import. A rerun updates the same audit.
 
 ## Prerequisites
